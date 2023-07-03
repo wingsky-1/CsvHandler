@@ -11,7 +11,7 @@ def main():
     # 从./config.json中读取配置文件
     config = {}
     with open('./config.json', 'r', encoding='utf-8') as file:
-        config = json.load(file)
+        config: dict[str, dict] = json.load(file)
 
     # 遍历指定目录下的csv文件
     for root, dirs, files in os.walk('./data'):
@@ -22,7 +22,7 @@ def main():
             processFile(root, file, config)
 
 
-def processFile(root, file, config):
+def processFile(root: str, file: str, config: dict[str, dict]):
     """
     自定义处理文件入口
     """
@@ -45,8 +45,8 @@ def readCsv(file):
     读取csv文件
     """
 
-    fieldIndex = {}
-    csvData = {}
+    fieldIndex: dict[str, int] = {}
+    csvData: dict[int, list[str]] = {}
 
     reader = csv.reader(file)
     for row in reader:
@@ -60,7 +60,7 @@ def readCsv(file):
     return fieldIndex, csvData
 
 
-def wirteCsv(file, csvData):
+def wirteCsv(file, csvData: dict[int, list[str]]):
     """
     写入csv文件
     """
@@ -71,5 +71,4 @@ def wirteCsv(file, csvData):
 
 
 if __name__ == '__main__':
-    # test
     main()

@@ -5,9 +5,8 @@ class ProcessUtils:
     自定义处理文件工具类
     """
 
-    def __init__(self, fileName: str, fieldIndex: dict[str:int], csvData: dict[int:str], config):
-        print(fileName)
-        self.fileName = fileName
+    def __init__(self, fileName: str, fieldIndex: dict[str, int], csvData: dict[int, list[str]], config: dict[str, dict[str, any]]):
+        self.fileName = fileName.replace('.csv', '')
         self.fieldIndex = fieldIndex
         self.csvData = csvData
         self.config = config
@@ -35,8 +34,7 @@ class ProcessUtils:
             return
         self.processConfig(self.config['all'])
 
-    def processConfig(self, config):
+    def processConfig(self, config: dict[str, any]):
         from processFunc import PROCESS_CONFIG
         for key, value in config.items():
-            print(key, value)
             PROCESS_CONFIG[key](self, value)

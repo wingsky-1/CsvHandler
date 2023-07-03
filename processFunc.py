@@ -4,7 +4,7 @@ from defines import START_ROW
 from processUtils import ProcessUtils
 
 
-def addFields(utils: ProcessUtils, config):
+def addFields(utils: ProcessUtils, config: list[dict]):
     """
     config:
     [
@@ -34,7 +34,7 @@ def addFields(utils: ProcessUtils, config):
             row.extend(defalutValues)
 
 
-def deleteFields(utils: ProcessUtils, config):
+def deleteFields(utils: ProcessUtils, config: list[str]):
     """
     config:
     [
@@ -45,7 +45,7 @@ def deleteFields(utils: ProcessUtils, config):
     ...
 
 
-def replaceFields(utils: ProcessUtils, config):
+def replaceFields(utils: ProcessUtils, config: list[dict]):
     """
     config:
     [
@@ -59,7 +59,7 @@ def replaceFields(utils: ProcessUtils, config):
     ...
 
 
-def replaceValues(utils: ProcessUtils, config):
+def replaceValues(utils: ProcessUtils, config: list[dict]):
     """
     config:
     [
@@ -74,7 +74,7 @@ def replaceValues(utils: ProcessUtils, config):
     ...
 
 
-def deleteRows(utils: ProcessUtils, config):
+def deleteRows(utils: ProcessUtils, config: list[dict]):
     """
     config:
     [
