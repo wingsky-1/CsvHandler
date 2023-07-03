@@ -2,10 +2,9 @@ import csv
 import os
 import json
 
+
+from defines import START_ROW
 from processUtils import ProcessUtils
-
-
-START_ROW = 2
 
 
 def main():
@@ -33,10 +32,12 @@ def processFile(root, file, config):
         return
 
     filePath = os.path.join(root, file)
-    with open(filePath, 'r+', encoding='utf-8') as file:
-        fieldIndex, csvData = readCsv(file)
+    # TODO 文件格式修复，验证当前逻辑下修改的文件是否能够导入
+    with open(filePath, 'r+', newline='') as f:
+        fieldIndex, csvData = readCsv(f)
+        print(fieldIndex, csvData)
         ProcessUtils(file, fieldIndex, csvData, config).process()
-        wirteCsv(file, csvData)
+        wirteCsv(f, csvData)
 
 
 def readCsv(file):

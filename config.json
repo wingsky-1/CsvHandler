@@ -1,4 +1,11 @@
 {
   "all": {},
-  "Test": {}
+  "data.csv": {
+    "addFields": [
+      {
+        "fieldName": "test",
+        "defalutValue": "test阿斯顿"
+      }
+    ]
+  }
 }

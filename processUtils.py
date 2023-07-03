@@ -1,91 +1,12 @@
 
 
-def addFields(utils, config):
-    """
-    config:
-    [
-        {
-        fieldName : 'xxx',
-        defalutValue : ''
-        },
-        ...
-    ]
-    """
-    ...
-
-
-def deleteFields(utils, config):
-    """
-    config:
-    [
-        'fieldName',
-        ...
-    ]
-    """
-    ...
-
-
-def replaceFields(utils, config):
-    """
-    config:
-    [
-        {
-        fieldName : 'xxx',
-        replaceValue : 'xxx'
-        },
-        ...
-    ]
-    """
-    ...
-
-
-def replaceValues(utils, config):
-    """
-    config:
-    [
-        {
-        fieldName : 'xxx',
-        targetValue : 'xxx',
-        replaceValue : 'xxx'
-        },
-        ...
-    ]
-    """
-    ...
-
-
-def deleteRows(utils, config):
-    """
-    config:
-    [
-        {
-        rowIndex : 'xxx',
-        },
-        {
-        fieldName : 'xxx',
-        targetValue : 'xxx'
-        },
-        ...
-    ]
-    """
-    ...
-
-
-PROCESS_CONFIG = {
-    'addFields': addFields,
-    'deleteFields': deleteFields,
-    'replaceFields': replaceFields,
-    'replaceValues': replaceValues,
-    'deleteRows': deleteRows
-}
-
-
 class ProcessUtils:
     """
     自定义处理文件工具类
     """
 
-    def __init__(self, fileName, fieldIndex, csvData, config):
+    def __init__(self, fileName: str, fieldIndex: dict[str:int], csvData: dict[int:str], config):
+        print(fileName)
         self.fileName = fileName
         self.fieldIndex = fieldIndex
         self.csvData = csvData
@@ -100,7 +21,7 @@ class ProcessUtils:
 
     def processOnly(self):
         """
-        处理only
+        处理当前文件特定配置
         """
         if not self.fileName in self.config:
             return
@@ -108,12 +29,14 @@ class ProcessUtils:
 
     def processAll(self):
         """
-        处理all
+        处理所有文件都要执行的配置
         """
         if not 'all' in self.config:
             return
         self.processConfig(self.config['all'])
 
     def processConfig(self, config):
+        from processFunc import PROCESS_CONFIG
         for key, value in config.items():
+            print(key, value)
             PROCESS_CONFIG[key](self, value)
