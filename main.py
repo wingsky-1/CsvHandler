@@ -70,4 +70,5 @@ def wirteCsv(file, csvData):
 
 
 if __name__ == '__main__':
+    # test
     main()
